@@ -1,3 +1,0 @@
-[submodule "submodules/webpagetest"]
-	path = submodules/webpagetest
-	url = https://github.com/WPO-Foundation/webpagetest

@@ -8,8 +8,6 @@ services:
 
     agent:
         image: webpagetest/agent
-        ports:
-            - 4001:80
         environment:
             - SERVER_URL=http://localhost:4000/work/
             - LOCATION=Test
