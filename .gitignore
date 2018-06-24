@@ -1,2 +1,3 @@
 node_modules/
-
+benchmarks/commands.txt
+benchmarks/results.json

@@ -5,7 +5,8 @@ if [ -z ${WPT_SERVER_URL+x} ]
 then echo "WPT_SERVER_URL must be set" && exit 1
 fi
 
-COMMAND="-s $WPT_SERVER_URL test --location=Test --runs=3 --first --poll 10"
+COMMAND="-s $WPT_SERVER_URL test --location=Test --runs=3 --mobile
+    --lighthouse --connectivity=3GSlow --poll 10"
 URLS_FILE="benchmarks/urls.txt"
 COMMANDS_FILE="benchmarks/commands.txt"
 RESULTS_FILE="benchmarks/results.json"
