@@ -1,0 +1,21 @@
+version: '3'
+services:
+    server:
+        image: webpagetest/server
+        ports:
+            - 4000:80
+        restart: always
+
+    agent:
+        image: webpagetest/agent
+        ports:
+            - 4001:80
+        environment:
+            - SERVER_URL=http://localhost:4000/work/
+            - LOCATION=Test
+            - NAME=docker
+        network_mode: "host"
+        cap_add:
+            - NET_ADMIN
+        depends_on:
+            - server
