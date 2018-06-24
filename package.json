@@ -1,0 +1,10 @@
+{
+  "name": "webpagetest-benchmark",
+  "version": "0.0.1",
+  "description": "zezima.io webpagetest benchmark",
+  "author": "Maxence Caron",
+  "license": "MIT",
+  "dependencies": {
+    "webpagetest": "^0.3.8"
+  }
+}

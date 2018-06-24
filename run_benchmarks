@@ -1,22 +1,18 @@
 #!/usr/bin/env bash
-ADDR="127.0.0.1"
-PORT=4000
-CONNECTIVITY="3G" # 4G / 3GSlow / LTE / Native
-RUNS=3
-# More at https://sites.google.com/a/webpagetest.org/docs/advanced-features/webpagetest-restful-apis#TOC-Specifying-connectivity
+
+# Check if WPT_SERVER_URL is set
+if [ -z ${WPT_SERVER_URL+x} ]
+then echo "WPT_SERVER_URL must be set" && exit 1
+fi
+
+COMMAND="-s $WPT_SERVER_URL test --location=Test --runs=3 --first --poll 10"
+URLS_FILE="benchmarks/urls.txt"
+COMMANDS_FILE="benchmarks/commands.txt"
+RESULTS_FILE="benchmarks/results.json"
 
 set -e
 
-# Wait until containers are ready
-printf "\e[0;35m%-6s\e[m" "Waiting for server to respond"
-while ! nc -z $ADDR $PORT; do sleep 1; done
-printf "\r\e[K\e[0;35m%-6s\e[m\n" "Server responded"
-# Run tests
-printf "\e[0;35m%-6s\e[m" "Running benchmarks"
-./batchtool/wpt_batch.py \
-    --server=http://$ADDR:$PORT/ \
-    --urlfile=./batchtool/urls.txt \
-    --outputdir=./batchtool/results \
-    --connectivity=$CONNECTIVITY \
-    --runs=3
-printf "\r\e[K\e[0;35m%-6s\e[m\n" "Finished running benchmarks"
+# Prefix every line of the URLS_FILE with the COMMAND
+awk -v prefix="$COMMAND " '{print prefix $0}' $URLS_FILE > $COMMANDS_FILE
+# Run the benchmarks
+yarn webpagetest batch $COMMANDS_FILE > RESULTS_FILE
