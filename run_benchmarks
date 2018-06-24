@@ -15,4 +15,4 @@ set -e
 # Prefix every line of the URLS_FILE with the COMMAND
 awk -v prefix="$COMMAND " '{print prefix $0}' $URLS_FILE > $COMMANDS_FILE
 # Run the benchmarks
-yarn webpagetest batch $COMMANDS_FILE > $RESULTS_FILE
+yarn -s webpagetest batch $COMMANDS_FILE > $RESULTS_FILE
