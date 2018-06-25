@@ -9,6 +9,9 @@
 ## Dependencies
 * [webpagetest-api](https://github.com/marcelduran/webpagetest-api)
 
+## The Benchmark
+took 245m32.118s
+
 ## Running
 ```bash
 # install nodejs dependencies
