@@ -6,8 +6,8 @@ then echo "WPT_SERVER_URL must be set" && exit 1
 fi
 
 # To prevent >80 char string
-COMMAND="-s $WPT_SERVER_URL test --location=Test --poll 10"
-COMMAND+="--runs=5 --lighthouse --connectivity=3GSlow --mobile"
+COMMAND="-s $WPT_SERVER_URL test --location Test --runs 5"
+COMMAND+="--lighthouse --connectivity 3GSlow --mobile --poll 10"
 URLS_FILE="benchmarks/urls.txt"
 COMMANDS_FILE="benchmarks/commands.txt"
 RESULTS_FILE="benchmarks/results.json"
